@@ -12,7 +12,7 @@ class MCPClient(MultiServerMCPClient):
         exc_val: BaseException | None,
         exc_tb: TracebackType | None,
     ) -> None:
-        await self.exit_stack.aclose()
+        await super().__aexit__(exc_type, exc_val, exc_tb)
 
         # Give a moment for cleanup on Windows
         if os.name == 'nt':
